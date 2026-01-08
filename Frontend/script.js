@@ -3,7 +3,7 @@ const select = document.querySelector("select");
 const button = document.querySelector("button");
 const taskList = document.querySelector(".task-list");
 
-const API_URL = "http://localhost:5000/tasks";
+const API_URL = "https://smart-task-planner-2-8w3g.onrender.com/tasks";
 
 // ===== FETCH & RENDER =====
 async function loadTasks() {
@@ -23,6 +23,7 @@ function renderTasks(tasks) {
     const span = document.createElement("span");
     span.innerText = task.title;
 
+    // Toggle completed
     span.addEventListener("click", async () => {
       await fetch(`${API_URL}/${task._id}`, {
         method: "PUT",
@@ -32,6 +33,7 @@ function renderTasks(tasks) {
       loadTasks();
     });
 
+    // Delete task
     const deleteBtn = document.createElement("button");
     deleteBtn.innerText = "Remove";
 
@@ -47,8 +49,10 @@ function renderTasks(tasks) {
   });
 }
 
-// ===== ADD TASK =====
-button.addEventListener("click", async () => {
+// ===== ADD TASK (FIXED) =====
+button.addEventListener("click", async (e) => {
+  e.preventDefault(); // 🔥 THIS FIXES EVERYTHING
+
   if (input.value.trim() === "") return;
 
   await fetch(API_URL, {
