@@ -1,0 +1,142 @@
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 40px;
+}
+
+/* ===== INPUT AREA ===== */
+.task-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+input,
+select,
+button {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #38bdf8;
+}
+
+/* ===== BUTTON ===== */
+button {
+  background: #38bdf8;
+  color: #020617;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* ===== TASK LIST ITEMS ===== */
+li {
+  background: #1e293b;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid transparent;
+
+  /* Animation for task appearance */
+  animation: slideIn 0.25s ease-out;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+li:hover {
+  transform: scale(1.01);
+}
+
+/* ===== PRIORITY COLORS ===== */
+.high {
+  border-left-color: #ef4444;
+}
+
+.medium {
+  border-left-color: #facc15;
+}
+
+.low {
+  border-left-color: #22c55e;
+}
+
+/* ===== COMPLETED TASK ===== */
+.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+/* ===== TASK TEXT ===== */
+li span {
+  cursor: pointer;
+}
+
+/* ===== REMOVE BUTTON ===== */
+li button {
+  background: transparent;
+  color: #ef4444;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.15s ease, transform 0.1s ease;
+}
+
+li button:hover {
+  text-decoration: underline;
+  transform: scale(1.1);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== COMPLETION FLASH ===== */
+@keyframes flashComplete {
+  0% { background-color: #1e293b; }
+  50% { background-color: #22c55e; } /* green flash */
+  100% { background-color: #1e293b; }
+}
+
+.flash-complete {
+  animation: flashComplete 0.3s ease;
+}
+
+/* ===== DELETE SHAKE ===== */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.2s ease;
+}
